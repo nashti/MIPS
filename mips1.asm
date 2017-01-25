@@ -186,9 +186,9 @@ remplir_user_case :                  # remplissage manuel de la grille
     
     move $s6, $v0                    # mettre position_x dans $s6
     beq $s6, $0, remplir_user_end    # si c'est 0, on quitte
-    sub $s6, 1                       # decalage de 1 (on compte les lignes de 0 a 8)
+    sub $s6, $s6, 1                       # decalage de 1 (on compte les lignes de 0 a 8)
     mul $s6, $s6, 9                  # mettre dans s6 premiere case de la ligne s6
-    sub $s6, 1                       # decalage de 1 (on compte les colonnes de 0 a 8)
+    sub $s6, $s6, 1                       # decalage de 1 (on compte les colonnes de 0 a 8)
     
     la $a0, demande_position_y       # demander une position y
     li $v0, 4
@@ -204,7 +204,7 @@ remplir_user_case :                  # remplissage manuel de la grille
     li $v0, 5
     syscall                          # mettre nb dans $v0
     
-    sb $v0, grille+0($s6)            # enregistrer le nb dans la grille
+    sb $v0, grille + 0($s6)            # enregistrer le nb dans la grille
     
     jal affichage                    # afficher la grille
     
@@ -244,15 +244,15 @@ init :
 init_remplir_manuel :                   # si l'utilisateur veut remplir manuellement
     addi $t0, $t0, 1                    # on va a la case suivante
     beq $t0, 81, init_end               # si fin de grille, on sort
-    sb $s0, grille+0($t0)               # sinon on met s0 (0 ou 10) dans la case
+    sb $s0, grille + 0($t0)               # sinon on met s0 (0 ou 10) dans la case
     j init_remplir_manuel
     
 init_remplir_auto :                     # si l'utilisateur veut remplir automatiquement, permet d'uniformiser les 0 et 10 suivant la strat choisie
     addi $t0, $t0, 1                    # on va a la case suivante
     beq $t0, 81, init_end               # on a fini
-    lb $t1, grille+0($t0)
+    lb $t1, grille + 0($t0)
     bne $t1, $s1, init_remplir_auto     # si t1 = s1, on doit inverser son contenu
-    sb $s0, grille+0($t0)
+    sb $s0, grille + 0($t0)
     j init_remplir_auto
         
 init_end : 
