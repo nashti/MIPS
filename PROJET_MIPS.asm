@@ -53,11 +53,14 @@ lw $a0,0($sp)				#Fermeture pour la fonction affichage
 		
 
 
-addi $sp,$sp,-64			#Ouverture pour la fonction verification
+addi $sp,$sp,-64			#Ouverture pour la fonction grille_valide
 addi $fp,$sp,64
 sw $a0,0($sp)
-jal verification				#Appel de la fonction verification
-lw $a0,0($sp)				#Fermeture pour la fonction verification
+
+jal grille_valide				#Appel de la fonction qui vérifie si la grille est valide
+#beq $v0, $0, return_fail    # si elle n'est pas fausse, on poursuit
+
+lw $a0,0($sp)				#Fermeture pour la fonction grille_valide
 
 
 
@@ -67,6 +70,19 @@ lw $a0,0($sp)				#Fermeture pour la fonction verification
 
 
 
+
+add $a0,$v0,$zero
+ori $v0,$zero,1
+syscall
+
+
+ 
+ 
+ 
+FINI_ECHEC :                   # il n'y a pas de solution
+    #la $a0, string_fail
+    li $v0, 4
+    syscall    
 
 
 
@@ -312,7 +328,11 @@ parcours_grille :
     beq $a0, $s0, parcours_grille   # 0 ou 10 dans la case actuelle, on la saute
     
     move $a1, $s7                           #on met s7 dans a1 pour l'appel de la fonction verification
+    
+    
     jal verification                        # on lance la verification
+    
+    
     beq $v0, $0, sortie         # conflit dans la case actuelle, on quitte avec $v0=0
     j parcours_grille               # pas de conflit, on passe a la case suivante
 
@@ -323,6 +343,40 @@ sortie :
     jr $ra
 
 
+
+
+
+
+
+
+					# // VERIFIE LE CHIFFRE A METTRE
+					
+chiffre_a_mettre :
+    addi $sp,$sp,-8				#Prologue
+    sw $ra,0($sp)
+    sw $fp,4($sp)
+    addi $fp,$sp,8
+    move $v0, $0                 #on initialise $v0 à 0 si jamais on sort directement
+    
+ch_parcours :
+    add $a0, $a0, 1             #on teste si le chiffre suivant est possible
+    beq $a0, 10, ch_echec  	#Si aucun chiffre ne marche,on jump à la sortie
+    jal verification              #On appelle la fonction de verification
+    beq $v0, $0, ch_parcours   #Si le chiffre ne marche pas, on refait la manipulation
+    move $v0, $a0                 #On stocke $a0 dans $v0 si c'est valide
+    
+sortie_chiffre:
+    lw $ra,0($sp)				#Epilogue
+    lw $fp,4($sp)
+    addi $sp,$sp,8
+    jr $ra
+    
+ch_echec :
+    move $v0, $0                 # on place s0 dans v0 (0 si strategie MIN, 10 si strategie MAX) 
+    lw $ra,0($sp)				#Epilogue
+    lw $fp,4($sp)
+    addi $sp,$sp,8
+    jr $ra
 
 
 
