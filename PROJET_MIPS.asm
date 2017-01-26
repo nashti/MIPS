@@ -16,7 +16,7 @@ rien :          .asciiz "*" 								#étoile pour dire qu'l n'y a rien
 
 
 
-grille : 
+grille : 				
     .byte 5, 3, 0, 0, 7, 0, 0, 0, 0
     .byte 6, 0, 0, 1, 9, 5, 0, 0, 0
     .byte 0, 9, 8, 0, 0, 0, 0, 6, 0
@@ -79,10 +79,7 @@ syscall
  
  
  
-FINI_ECHEC :                   # il n'y a pas de solution
-    #la $a0, string_fail
-    li $v0, 4
-    syscall    
+
 
 
 
