@@ -288,7 +288,6 @@ valide :
     div $t6, $t0, 3
     mul $t6, $t6, 27     				#on fait une multiplication et on met le résultat dans $t6
     div $t7, $t5, 3
-    addi $t7,$t7,3
     mul $t7, $t7, 3   					#on fait une multiplication et on met le résultat dans $t7
     add $t6, $t6, $t7    
     
@@ -301,7 +300,7 @@ parcours :
     beq $t6, $a1, case_suivante     			#On avance d'une case
     
     lb $t4, grille + 0($t6)                           	#On charge le contenu de la case
-    beq $t4, $a0, succes                  		#Si on ne peut pas y mettre a1, alorc c'est un échec
+    beq $t4, $a0, echec                  		#Si on ne peut pas y mettre a1, alorc c'est un échec
     j case_suivante                 			#Si on peut y mettre a1, on continue à la case suivante
     
 ligne_suivante :                    			#On passe a la ligne suivante du bloc
