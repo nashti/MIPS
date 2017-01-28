@@ -28,9 +28,9 @@ grille :
     .byte 0, 0, 0, 0, 0, 9, 0, 0, 7
 
 
-mal :          				.asciiz " \n Désolé mais aucune solution exite \n"
-bon :       				.asciiz " \n BIM, vous avez de la chance, on a trouvé une solution \n"
-attente: 				.asciiz "\n tic tac tic tac tic tac .... on cherche une solution \n"
+mal :          				.asciiz " \n Désolé mais aucune solution n'exite \n"
+bon :       				.asciiz " \n Une solution a été trouvé :  \n"
+attente: 				.asciiz "\n .... on cherche une solution .... \n"
     
 
 
