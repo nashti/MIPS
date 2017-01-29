@@ -15,23 +15,22 @@ rien :          .asciiz "*" 								#étoile pour dire qu'l n'y a rien
 
 
 
-grille :
-    .byte 1, 0, 0, 0, 0, 7, 0, 9, 0
-    .byte 0, 3, 0, 0, 2, 0, 0, 0, 8
-    .byte 0, 0, 9, 6, 0, 0, 5, 0, 0
-    .byte 0, 0, 5, 3, 0, 0, 9, 0, 0
-    .byte 0, 1, 0, 0, 8, 0, 0, 0, 2
-    .byte 6, 0, 0, 0, 0, 4, 0, 0, 0
-    .byte 3, 0, 0, 0, 0, 0, 0, 1, 0
-    .byte 0, 4, 0, 0, 0, 0, 0, 0, 7
-    .byte 0, 0, 7, 0, 0, 0, 3, 0, 0
+
+grille : 
+    .byte 5, 0, 0, 1, 0, 0, 0, 0, 0
+    .byte 0, 0, 0, 0, 0, 6, 8, 0, 3
+    .byte 0, 4, 6, 0, 9, 0, 0, 0, 0
+    .byte 0, 0, 5, 3, 0, 7, 0, 6, 0
+    .byte 8, 0, 7, 0, 0, 0, 4, 0, 9
+    .byte 0, 2, 0, 9, 0, 4, 7, 0, 0
+    .byte 0, 0, 0, 0, 2, 0, 1, 8, 0
+    .byte 2, 0, 8, 6, 0, 0, 0, 0, 0
+    .byte 0, 0, 0, 0, 0, 9, 0, 0, 7
 
 
-
-    
-mal :          				.asciiz " \n Désolé mais aucune solution exite \n"
-bon :       				.asciiz " \n BIM, vous avez de la chance, on a trouvé une solution \n"
-attente: 				.asciiz "\n tic tac tic tac tic tac .... on cherche une solution \n"
+mal :          				.asciiz " \n Désolé mais aucune solution n'exite \n"
+bon :       				.asciiz " \n Une solution a été trouvé :  \n"
+attente: 				.asciiz " \n .... on cherche une solution .... \n"
     
 
 
@@ -489,6 +488,3 @@ depile :
     lw $t0, 0($sp)                      	#on recupere le haut de pile
     beq $t0, -1, res_succes   			#si c'est -1, on termine
     j depile               			#Sinon on refait la manipulation
-
-    
-        
