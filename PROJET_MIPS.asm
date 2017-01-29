@@ -15,19 +15,20 @@ rien :          .asciiz "*" 								#étoile pour dire qu'l n'y a rien
 
 
 
+grille :
+    .byte 1, 0, 0, 0, 0, 7, 0, 9, 0
+    .byte 0, 3, 0, 0, 2, 0, 0, 0, 8
+    .byte 0, 0, 9, 6, 0, 0, 5, 0, 0
+    .byte 0, 0, 5, 3, 0, 0, 9, 0, 0
+    .byte 0, 1, 0, 0, 8, 0, 0, 0, 2
+    .byte 6, 0, 0, 0, 0, 4, 0, 0, 0
+    .byte 3, 0, 0, 0, 0, 0, 0, 1, 0
+    .byte 0, 4, 0, 0, 0, 0, 0, 0, 7
+    .byte 0, 0, 7, 0, 0, 0, 3, 0, 0
 
-grille : 
-    .byte 5, 3, 0, 0, 7, 0, 0, 0, 0
-    .byte 6, 0, 0, 1, 9, 5, 0, 0, 0
-    .byte 0, 9, 8, 0, 0, 0, 0, 6, 0
-    .byte 8, 0, 0, 0, 6, 0, 0, 0, 3
-    .byte 4, 0, 0, 8, 0, 3, 0, 0, 1
-    .byte 7, 0, 0, 0, 2, 0, 0, 0, 6
-    .byte 0, 6, 0, 0, 0, 0, 2, 8, 0
-    .byte 0, 0, 0, 4, 1, 9, 0, 0, 5
-    .byte 0, 0, 0, 0, 8, 0, 0, 7, 9
 
 
+    
 mal :          				.asciiz " \n Désolé mais aucune solution exite \n"
 bon :       				.asciiz " \n BIM, vous avez de la chance, on a trouvé une solution \n"
 attente: 				.asciiz "\n tic tac tic tac tic tac .... on cherche une solution \n"
