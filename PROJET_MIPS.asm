@@ -29,7 +29,7 @@ grille :
 
 
 mal :          				.asciiz " \n Désolé mais aucune solution n'exite \n"
-bon :       				.asciiz " \n Une solution a été trouvé :  \n"
+bon :       				.asciiz " \n Une solution a été trouvée :  \n"
 attente: 				.asciiz " \n .... on cherche une solution .... \n"
     
 
